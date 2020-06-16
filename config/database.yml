@@ -1,0 +1,18 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: x_sunit_development
+
+test:
+  <<: *default
+  database: x_sunit_test
+
+production:
+  <<: *default
+  database: x_sunit_production
+  username: x_sunit
+  password: <%= ENV['X_SUNIT_DATABASE_PASSWORD'] %>
