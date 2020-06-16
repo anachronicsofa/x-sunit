@@ -31,7 +31,7 @@ module Api
 
       def update
         @survivor = Survivor.find(params[:id])
-        if @survivor.update_attributes(survivor_params)
+        if @survivor.update_attributes(survivor_params_up)
           render json: { status: 'SUCCESS', message: 'Updated survivor', data: @survivor }, status: :ok
         else
           render json: { status: 'ERROR', message: 'Survivor not update', data: @survivor.errors },
@@ -63,6 +63,10 @@ module Api
       def survivor_params
         params.require(:survivor).permit(:name, :birthdate, :gender, :latitude,
                                          :longitude, :reports_received, :abducted)
+      end
+
+      def survivor_params_up
+        params.require(:survivor).permit(:latitude, :longitude)
       end
     end
   end
