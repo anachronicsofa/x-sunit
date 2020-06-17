@@ -40,3 +40,4 @@ https://documenter.getpostman.com/view/11570035/Szzkbx1N
 <h2>To-do:</h2>
 
 * Change the type for Latitude and Longitude (altering for something that receives strings+numbers) 
+* Add a real autentication for the Survivor that will report another survivor
