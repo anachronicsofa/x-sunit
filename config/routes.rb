@@ -7,6 +7,9 @@ Rails.application.routes.draw do
           get :percentage_of_abducted
           get :percentage_of_non_abducted
         end
+        member do
+          post :report_abduction
+        end
       end
     end
   end

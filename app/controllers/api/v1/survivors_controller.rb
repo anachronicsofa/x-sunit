@@ -1,7 +1,7 @@
 module Api
   module V1
     class SurvivorsController < ApplicationController
-      before_action :set_survivor, only: %i[show update destroy]
+      before_action :set_survivor, only: %i[show update destroy report_abduction]
 
       def index
         @survivors = Survivor.order('created_at DESC')
@@ -9,7 +9,6 @@ module Api
       end
 
       def show
-        @survivor = Survivor.find(params[:id])
         render json: { status: 'SUCCESS', data: @survivor }, status: :ok
       end
 
@@ -24,13 +23,11 @@ module Api
       end
 
       def destroy
-        @survivor = Survivor.find(params[:id])
         @survivor.destroy
         render json: { status: 'SUCCESS', message: 'Deleted survivor', data: @survivor }, status: :ok
       end
 
       def update
-        @survivor = Survivor.find(params[:id])
         if @survivor.update_attributes(survivor_params_up)
           render json: { status: 'SUCCESS', message: 'Updated survivor', data: @survivor }, status: :ok
         else
@@ -50,8 +47,13 @@ module Api
       end
 
       def show_alphabetic_order
-        @survivors = Survivor.order(:name)
-        render json: { status: 'SUCCESS', data: @survivors }, status: :ok
+        render json: { status: 'SUCCESS', data: Survivor.order(:name) }, status: :ok
+      end
+
+      def report_abduction
+        @survivor.reports_received += 1
+        @survivor.abducted = true if @survivor.reports_received > 3
+        @survivor.save
       end
 
       private
@@ -66,7 +68,7 @@ module Api
       end
 
       def survivor_params_up
-        params.require(:survivor).permit(:latitude, :longitude)
+        params.require(:survivor).permit(:latitude, :longitude, :reports_received)
       end
     end
   end
