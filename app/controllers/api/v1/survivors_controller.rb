@@ -68,7 +68,7 @@ module Api
       end
 
       def survivor_params_up
-        params.require(:survivor).permit(:latitude, :longitude, :reports_received)
+        params.require(:survivor).permit(:latitude, :longitude)
       end
     end
   end

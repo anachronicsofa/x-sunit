@@ -1,24 +1,42 @@
-# README
+# X-Sunit 
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+A system to share resources between non-abducted humans, that receives survivors informations and generates reports.
 
-Things you may want to cover:
+<h2>Technologies:</h2>
 
-* Ruby version
+* Ruby version: 2.7.1
 
-* System dependencies
+* Rails version: 6.0.3.1
 
-* Configuration
+* Database: Postgresql 
 
-* Database creation
+<h2>Infos:</h2>
 
-* Database initialization
+* Clone the repository:
+```
+$ git clone https://github.com/anachronicsofa/x-sunit
+```
+* Install all gems: 
+```
+$ bundle install
+```
+* Update the database and feed the database with default seeds:
+```
+$ rake db:create db:migrate db:seed
+```
+* Start the web server on http://localhost:3000 by default:
+```
+$ rails s
+```
+* All routes: http://localhost:3000/rails/info/routes or 
+```
+$ rails routes
+```
 
-* How to run the test suite
+<h2>Features/Endpoints documentation (via Postman):</h2>
 
-* Services (job queues, cache servers, search engines, etc.)
+https://documenter.getpostman.com/view/11570035/Szzkbx1N
 
-* Deployment instructions
+<h2>To-do:</h2>
 
-* ...
+* Change the type for Latitude and Longitude (altering for something that receives strings+numbers) 
