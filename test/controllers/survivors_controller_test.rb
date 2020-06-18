@@ -27,8 +27,7 @@ class SurvivorsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should save survivor without reports received and abducted status' do
-    post api_v1_survivors_path, params: { survivor: { abducted: @survivor.abducted,
-                                                      birthdate: @survivor.birthdate,
+    post api_v1_survivors_path, params: { survivor: { birthdate: @survivor.birthdate,
                                                       gender: @survivor.gender, latitude: @survivor.latitude,
                                                       longitude: @survivor.longitude, name: @survivor.name } }, as: :json
     assert_response 201
