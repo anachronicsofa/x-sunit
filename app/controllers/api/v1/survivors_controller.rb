@@ -51,14 +51,12 @@ module Api
       end
 
       def report_abduction
-        @reporting = Survivor.find(params[:id_rep])
-        if (@reporting.equal? @survivor) || (@reporting.abducted == true)
-          render json: { status: 'ERROR', message: 'You cant report this survivor' }, status: :unprocessable_entity
+        @report = @survivor.reporting(params[:id_rep])
+        if @report
+          render json: { status: 'SUCCESS', message: 'Report received' }, status: :ok
+        else
+          render json: { status: 'ERROR', message: 'You cant report this survivor' }, status: :ok
         end
-        @survivor.reports_received += 1
-        @survivor.abducted = true if @survivor.reports_received >= 3
-        @survivor.save
-        render json: { status: 'SUCCESS', message: 'Survivor reported'}, status: :ok
       end
 
       private

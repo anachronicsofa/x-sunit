@@ -14,4 +14,16 @@ class Survivor < ApplicationRecord
   def self.report_non_abducted
     (Survivor.where(abducted: false).size / Survivor.all.size) * 100
   end
+
+  def reporting(reporter_id)
+    @reporting = Survivor.find(reporter_id)
+    if (@reporting.equal? @survivor) || (@reporting.abducted == true)
+      false
+    else
+      self.reports_received += 1
+      self.abducted = true if self.reports_received >= 3
+      save
+      true
+    end
+  end
 end
