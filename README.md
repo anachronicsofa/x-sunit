@@ -39,5 +39,6 @@ https://documenter.getpostman.com/view/11570035/Szzkbx1N
 
 <h2>To-do:</h2>
 
-* Change the type for Latitude and Longitude (altering for something that receives strings+numbers) 
-* Add a real autentication for the Survivor that will report another survivor
+* Change the type for Latitude and Longitude (altering for something that receives strings+numbers) cause, when I made the database, I didn't notice that they have the directions like N,S. Also, maybe change to some structure that receives two arguments at same time (maybe point or an array), simplifying the input.
+* Add a real autentication (maybe a user and password) for the survivor that will report another survivor
+* I still need to improve my mini-test usage, adding more failure cases and methods

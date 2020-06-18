@@ -15,7 +15,7 @@ module Api
       def create
         @survivor = Survivor.new(survivor_params)
         if @survivor.save
-          render json: { status: 'SUCCESS', message: 'Saved survivor', data: @survivor }, status: :ok
+          render json: { status: 'SUCCESS', message: 'Saved survivor', data: @survivor }, status: 201
         else
           render json: { status: 'ERROR', message: 'Survivor not saved', data: @survivor.errors },
                  status: :unprocessable_entity
@@ -24,11 +24,11 @@ module Api
 
       def destroy
         @survivor.destroy
-        render json: { status: 'SUCCESS', message: 'Deleted survivor', data: @survivor }, status: :ok
+        render json: { status: 'SUCCESS', message: 'Deleted survivor', data: @survivor }, status: 204
       end
 
       def update
-        if @survivor.update_attributes(survivor_params_up)
+        if @survivor.update(survivor_params_up)
           render json: { status: 'SUCCESS', message: 'Updated survivor', data: @survivor }, status: :ok
         else
           render json: { status: 'ERROR', message: 'Survivor not update', data: @survivor.errors },
@@ -55,7 +55,7 @@ module Api
         if @report
           render json: { status: 'SUCCESS', message: 'Report received' }, status: :ok
         else
-          render json: { status: 'ERROR', message: 'You cant report this survivor' }, status: :ok
+          render json: { status: 'ERROR', message: 'You cant report this survivor' }, status: :unprocessable_entity
         end
       end
 
