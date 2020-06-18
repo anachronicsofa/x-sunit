@@ -8,6 +8,7 @@ gem 'pg', '>= 0.18', '< 2.0'
 gem 'pry'
 gem 'puma', '~> 4.1'
 gem 'rails', '~> 6.0.2', '>= 6.0.2.2'
+gem 'validates_timeliness', '~> 5.0.0.alpha3'
 
 group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
