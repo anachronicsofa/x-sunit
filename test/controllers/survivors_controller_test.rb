@@ -18,6 +18,7 @@ class SurvivorsControllerTest < ActionDispatch::IntegrationTest
                                                         longitude: @survivor.longitude, name: @survivor.name,
                                                         reports_received: @survivor.reports_received } }, as: :json
     end
+    assert_equal true, @survivor.valid?
     assert_response 201
   end
 
@@ -31,6 +32,7 @@ class SurvivorsControllerTest < ActionDispatch::IntegrationTest
                                                       gender: @survivor.gender, latitude: @survivor.latitude,
                                                       longitude: @survivor.longitude, name: @survivor.name } }, as: :json
     assert_response 201
+    assert_equal true, @survivor.valid?
   end
 
   test 'should show survivor' do
@@ -38,9 +40,10 @@ class SurvivorsControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
-  test 'should update survivor' do
-    patch api_v1_survivor_path(@survivor), params: { survivor: { abducted: @survivor.abducted, birthdate: @survivor.birthdate, gender: @survivor.gender, latitude: @survivor.latitude, longitude: @survivor.longitude, name: @survivor.name, reports_received: @survivor.reports_received } }, as: :json
+  test 'should update survivor just with latitude and longitude params' do
+    patch api_v1_survivor_path(@survivor), params: { survivor: { latitude: @survivor.latitude, longitude: @survivor.longitude } }, as: :json
     assert_response 200
+    assert_equal true, @survivor.valid?
   end
 
   test 'should destroy survivor' do
