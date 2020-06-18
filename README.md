@@ -1,6 +1,6 @@
 # X-Sunit 
 
-A system to share resources between non-abducted humans, that receives survivors informations and generates reports.
+A system to share resources between non-abducted humans, that receives survivors informations and generates reports!
 
 <h2>Technologies:</h2>
 
