@@ -13,11 +13,24 @@ class SurvivorsControllerTest < ActionDispatch::IntegrationTest
   test 'should create survivor' do
     assert_difference('Survivor.count') do
       post api_v1_survivors_path, params: { survivor: { abducted: @survivor.abducted,
-                                                        birthdate: @survivor.birthdate, 
+                                                        birthdate: @survivor.birthdate,
                                                         gender: @survivor.gender, latitude: @survivor.latitude,
                                                         longitude: @survivor.longitude, name: @survivor.name,
                                                         reports_received: @survivor.reports_received } }, as: :json
     end
+    assert_response 201
+  end
+
+  test 'should not save survivor without arguments' do
+    survivor = Survivor.new
+    assert_not survivor.save
+  end
+
+  test 'should save survivor without reports received and abducted status' do
+    post api_v1_survivors_path, params: { survivor: { abducted: @survivor.abducted,
+                                                      birthdate: @survivor.birthdate,
+                                                      gender: @survivor.gender, latitude: @survivor.latitude,
+                                                      longitude: @survivor.longitude, name: @survivor.name } }, as: :json
     assert_response 201
   end
 
