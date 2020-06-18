@@ -2,6 +2,7 @@ class Survivor < ApplicationRecord
   validates :name, presence: true, length: { maximum: 42 }
   validates :birthdate, presence: true, format: { without: /\A[a-zA-Z]+\z/,
                                                   message: 'only allows numbers' }
+  validates :birthdate, timeliness: {on_or_before: lambda { Date.current }, type: :date }
   validates :gender, presence: true, length: { maximum: 10 }
   validates :latitude, presence: true, length: { maximum: 5 }
   validates :longitude, presence: true, length: { maximum: 5 }
