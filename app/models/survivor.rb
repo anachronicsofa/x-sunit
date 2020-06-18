@@ -17,7 +17,7 @@ class Survivor < ApplicationRecord
 
   def reporting(reporter_id)
     @reporting = Survivor.find(reporter_id)
-    if (@reporting.equal? @survivor) || (@reporting.abducted == true)
+    if (reporter_id == id) || (@reporting.abducted == true)
       false
     else
       self.reports_received += 1
