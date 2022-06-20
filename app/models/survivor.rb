@@ -23,8 +23,7 @@ class Survivor < ApplicationRecord
     else
       self.reports_received += 1
       self.abducted = true if self.reports_received >= 3
-      save
-      true
+      save!
     end
   end
 end
